@@ -50,8 +50,12 @@ done
 
 echo "Number of hosts with open SMB ports: $(cat /tmp/$filename2 |grep 'Host' |grep 'open'|cut -d ' ' -f2 |wc -l) "
 
+file3="smb-os-$(date +%Y%m%d).txt"
+
 for host in $(cat /tmp/$filename2 |grep 'Host' |grep 'open'|cut -d ' ' -f2); do
-    nmap --append-output -oG smb-os.txt --script smb-os-discovery $host
+    nmap --append-output -oG $file3 --script smb-os-discovery $host
 done
+
+echo "file wrote to: $file3"
 
 rm /tmp/$filename /tmp/$filename2
