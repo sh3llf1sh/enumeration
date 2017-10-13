@@ -1,0 +1,18 @@
+ping 19216800 with ... failed. (timeout within 2sec.)
+
+ping 19216810 with ...
+ping 192.1680 with ... failed. (timeout within 2sec.)
+
+ping 192.1681 with ... failed. (timeout within 2sec.)
+
+ping 192.1682 with ... failed. (timeout within 2sec.)
+
+ping 192.1683 with ... failed. (timeout within 2sec.)
+
+ping 192.1684 with ... failed. (timeout within 2sec.)
+
+ping 192.1685 with ...
+ping 101100 with ...
+ping 101100 with ... ping error: [Errno 22] Invalid argument
+
+ Please enter the first octet desired ip set within the /16 CIDR, e.g 192: 

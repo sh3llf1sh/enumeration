@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+import ping,socket,sys
+
+#ping every ip address in the 10.11.1.0/24 range
+
+input("\n Would you like to ping sweep a /16 or /24 network? (16) or (24)") 
+
+if input == "16" or input == "/16":
+
+     ip_set = input("Please enter you desired ip set within the /16 CIDR:")
+
+     try: 
+         for i in range(255):
+             ip_string = str(ip_Set) + str(i)
+             sys.stdout = open('ping_sweep_py.log', 'a')
+             ping.verbose_ping(ip_string, count=1)
+
+     except socket.error, e:
+	print "ping error:" + e
+
+input("Please enter you desired ip set within the /24 CIDR:")
+
+try: 
+    for i in range(255):
+        ip_string = "10.11.1." + str(i)
+        sys.stdout = open('ping_sweep_py.log', 'a')
+        ping.verbose_ping(ip_string, count=1)
+except socket.error, e:
+	print "ping error:" + e
+
