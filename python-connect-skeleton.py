@@ -2,8 +2,8 @@
 
 import socket
 
-ip = input("What IP adddress would you like to connect to: \n")
-port = input("What port would you like to connect to: \n")
+ip = str(raw_input("What IP adddress would you like to connect to: \n"))
+port = int(raw_input("What port would you like to connect to: \n"))
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 
