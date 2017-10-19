@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [[ $# -lt 1 ]]; then
-    echo "Usage: ./changes.sh <file1> <file2> <file3> or <all> for all files"
+    echo "Usage: ./changes.sh <file1> <file2> <file3> or <--all> for all files"
     exit 0
 fi
 
-if [ "$1" == "all" ]; then 
+if [ "$1" == "--all" ]; then 
     echo "Please enter a commit message"
     read commit 
     git add --all
