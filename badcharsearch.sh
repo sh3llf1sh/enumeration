@@ -1,6 +1,19 @@
 #!/bin/bash
 
-shellcode=`for i in $( cat bad_payload.txt ); do echo $i |cut -d"\"" -f2 ; done`
+
+if [ "$#" -lt "1" ]; 
+then
+       echo "USAGE: ./badcharsearch.sh <filename>"
+       exit 0
+fi
+
+if [ ! -f "$1" ] 
+then
+       echo "The file or directory can not be found" 
+       exit 0
+fi
+
+shellcode=`for i in $( cat "$1" |grep -v "unsigned char" ); do echo $i |cut -d"\"" -f2 ; done`
 
 shellcode_formatted=$(echo $shellcode |tr -d " ")
 
